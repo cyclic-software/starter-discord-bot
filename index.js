@@ -42,16 +42,16 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         },
       });
     }
-    
+
     if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
       let c = (await discord_api.post(`/users/@me/channels`,{
-        recipient_id: interaction.member.user.id 
+        recipient_id: interaction.member.user.id
       })).data
       try{
-        // https://discord.com/developers/docs/resources/channel#create-message  
+        // https://discord.com/developers/docs/resources/channel#create-message
         let res = await discord_api.post(`/channels/${c.id}/messages`,{
-          content:'Yo!',
+          content:'Yo! I got your slash command. I am not able to respond to DMs just slash commands.',
         })
         console.log(res.data)
       }catch(e){
@@ -59,7 +59,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       }
 
       return res.send({
-        // https://discord.com/developers/docs/interactions/receiving-and-responding#responding-to-an-interaction        
+        // https://discord.com/developers/docs/interactions/receiving-and-responding#responding-to-an-interaction
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data:{
           content:'👍'
@@ -110,4 +110,4 @@ app.get('/', async (req,res) =>{
 app.listen(8999, () => {
 
 })
-  
+
