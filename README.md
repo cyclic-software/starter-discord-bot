@@ -117,7 +117,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         ```
 Refer to the [discord docs](https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-guild-application-commands) to extend this further 
 
-After register_commands, you should see them available in your discord server
+After registering commands, you should see them available in your discord server
 
 
 <p align="center">
