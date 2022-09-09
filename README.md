@@ -20,8 +20,11 @@ Navigate to Discord's developer portal and create a new application
 After creating the application, you are taken to the application's dashboard. There you can configure an app icon, description, etc. 
 
 Retrieve:
-- `APPLICATION ID`
+- `APPLICATION ID` (Discord also calls this `CLIENT ID`)
 - `PUBLIC KEY`
+
+Configure your Cyclic App with these environment variables.
+
 <p align="center">
     <img src="./doc/2.png"  width="500px"/>
 </p>
@@ -36,7 +39,7 @@ Press `Reset Token` and confirm.
 </p>
 
 
-Retrieve the `TOKEN` string. 
+Retrieve the `TOKEN` string and configure your Cyclic App with this environment variable.
 
 ### **4.** Adding the bot to your server
 The easiest way to add the bot to your server is via url. 
