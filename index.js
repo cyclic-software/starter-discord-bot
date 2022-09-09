@@ -1,16 +1,15 @@
 
 // const { clientId, guildId, token, publicKey } = require('./config.json');
 require('dotenv').config()
-const CLIENT_ID = process.env.CLIENT_ID
-const TOKEN = process.env.TOKEN
-const PUBLIC_KEY = process.env.PUBLIC_KEY
-const GUILD_ID = process.env.GUILD_ID
+const CLIENT_ID = process.env.CLIENT_ID || ''
+const TOKEN = process.env.TOKEN || ''
+const PUBLIC_KEY = process.env.PUBLIC_KEY || ''
+const GUILD_ID = process.env.GUILD_ID || ''
 
 
 const axios = require('axios')
 const express = require('express');
-const bodyParser = require('body-parser');
-const { InteractionType, InteractionResponseType,verifyKeyMiddleware } = require('discord-interactions');
+const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 
 
 const app = express();
