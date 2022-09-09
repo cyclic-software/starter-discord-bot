@@ -1,16 +1,15 @@
 
 // const { clientId, guildId, token, publicKey } = require('./config.json');
 require('dotenv').config()
-const CLIENT_ID = process.env.CLIENT_ID
-const TOKEN = process.env.TOKEN
-const PUBLIC_KEY = process.env.PUBLIC_KEY
-const GUILD_ID = process.env.GUILD_ID
+const APPLICATION_ID = process.env.APPLICATION_ID 
+const TOKEN = process.env.TOKEN 
+const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
+const GUILD_ID = process.env.GUILD_ID 
 
 
 const axios = require('axios')
 const express = require('express');
-const bodyParser = require('body-parser');
-const { InteractionType, InteractionResponseType,verifyKeyMiddleware } = require('discord-interactions');
+const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 
 
 const app = express();
@@ -90,7 +89,7 @@ app.get('/register_commands', async (req,res) =>{
   {
     // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
     let discord_response = await discord_api.put(
-      `/applications/${CLIENT_ID}/guilds/${GUILD_ID}/commands`,
+      `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
       slash_commands
     )
     console.log(discord_response.data)
