@@ -16,7 +16,7 @@ const app = express();
 // app.use(bodyParser.json());
 
 const discord_api = axios.create({
-  baseURL: 'https://discordapp.com/api/',
+  baseURL: 'https://discord.com/api/',
   timeout: 3000,
   headers: {
 	"Access-Control-Allow-Origin": "*",
