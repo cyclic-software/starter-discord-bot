@@ -56,6 +56,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		var resp;
 		try {
 			resp = await cmd.execute(interaction);
+			console.info(resp);
 			return res.send(resp);
 		} catch (e) {
 			console.error(e);
