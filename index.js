@@ -106,17 +106,17 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/server_data', async (req, res) => {
-	return res.send(
-		"<html><body>" +
-		"<iframe" +
-		"src=\"https://discord.com/widget?id=986933952860291122&theme=dark\"" +
-		"width=\"350\" height=\"500\" allowtransparency=\"true\" frameborder=\"0\"" +
-		"sandbox=\"allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts\"></iframe>" +
-		"</body></html>")
+	return (await discord_api.get(
+		`/guilds/${GUILD_ID}`
+	) + await discord_api.get(
+		`/guilds/${GUILD_ID}/channels`
+	) + await discord_api.get(
+		`/guilds/${GUILD_ID}/members`
+	)
+	)
 })
 
 console.log("Bot Started");
 app.listen(8999, () => {
 
 })
-
