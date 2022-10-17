@@ -1,7 +1,7 @@
 const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 module.exports = {
 	name: "fun_ping",
-	description: "Just Testing",
+	description: "This is a Fun Ping Message.",
 	options: [],
 	async execute(interaction) {
 		return {
