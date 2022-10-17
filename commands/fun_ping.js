@@ -2,7 +2,7 @@ module.exports = {
 	name: "fun_ping",
 	description: "Just Testing",
 	options: [],
-	execute: execute(interaction) {
+	execute: function execute(interaction) {
 		return {
 			type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 			data: {

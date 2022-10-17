@@ -1,6 +1,6 @@
 module.exports = {
-	name: "no_test",
-	description: "Not Testing",
+	name: "unfun_ping",
+	description: "Just Testing",
 	options: [],
 	execute: function execute(interaction) {
 		return {
