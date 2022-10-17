@@ -58,7 +58,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 				return res.send({
 					type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 					data: {
-						content: `Sorry ${interaction.member.usesr.username}, I don't knw what '${interaction.data.name}' is.`,
+						content: `Sorry ${interaction.member.user.username}, I don't knw what '${interaction.data.name}' is.`,
 					},
 				})
 			}
