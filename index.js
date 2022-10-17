@@ -28,7 +28,6 @@ const discord_api = axios.create({
 
 const fs = require("node:fs");
 const path = require("node:path");
-const { Console } = require('node:console')
 var commands = [];
 var commandsArr = [];
 
@@ -52,8 +51,10 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	const interaction = req.body;
 
 	if (interaction.type === InteractionType.APPLICATION_COMMAND) {
-		const cmd = commands.get(interaction.data.name);
-		if (!cmd) return;
+		commands.forEach(e => {
+			if (interaction.data.name == e.name)
+			cmd = e;
+		});
 		var resp;
 		try {
 			resp = commands.execute(interaction);
