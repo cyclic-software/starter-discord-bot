@@ -44,8 +44,6 @@ for (const file of cmdFile) {
 		options: cmd.options
 	});
 }
-console.info(commands);
-console.info("\n" + commandsArr);
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	const interaction = req.body;
@@ -57,44 +55,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		});
 		var resp;
 		try {
-			resp = commands.execute(interaction);
+			resp = cmd.execute(interaction);
 			return res.send(resp);
 		} catch (e) {
 			console.error(e);
 		}
-		// console.log(interaction.data.name)
-		// if (interaction.data.name == 'yo') {
-		// 	return res.send({
-		// 		type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-		// 		data: {
-		// 			content: `Yo ${interaction.member.user.username}!`,
-		// 		},
-		// 	});
-		// }
-
-		// if (interaction.data.name == 'dm') {
-		// 	// https://discord.com/developers/docs/resources/user#create-dm
-		// 	let c = (await discord_api.post(`/users/@me/channels`, {
-		// 		recipient_id: interaction.member.user.id
-		// 	})).data
-		// 	try {
-		// 		// https://discord.com/developers/docs/resources/channel#create-message
-		// 		let res = await discord_api.post(`/channels/${c.id}/messages`, {
-		// 			content: 'Yo! I got your slash command. I am not able to respond to DMs just slash commands.',
-		// 		})
-		// 		console.log(res.data)
-		// 	} catch (e) {
-		// 		console.log(e)
-		// 	}
-
-		// 	return res.send({
-		// 		// https://discord.com/developers/docs/interactions/receiving-and-responding#responding-to-an-interaction
-		// 		type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-		// 		data: {
-		// 			content: '👍'
-		// 		}
-		// 	});
-		// }
 	}
 
 });
