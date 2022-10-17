@@ -99,11 +99,18 @@ app.get('/register_commands', async (req, res) => {
 
 
 app.get('/', async (req, res) => {
-	return res.send('Follow documentation ')
+	return res.send(
+		'Follow documentation\n' +
+		'https://fine-pear-jaguar-boot.cyclic.app/register_commands\n' +
+		'http://127.0.0.1/register_commands')
 })
 
 app.get('/server_data', async (req, res) => {
-	return await discord_api.get()
+	return res.send(
+		"<iframe" +
+		"src=\"https://discord.com/widget?id=986933952860291122&theme=dark\"" +
+		"width=\"350\" height=\"500\" allowtransparency=\"true\" frameborder=\"0\"" +
+		"sandbox=\"allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts\"></iframe>")
 })
 
 console.log("Bot Started");
