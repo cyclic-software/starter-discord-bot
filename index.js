@@ -52,6 +52,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		commands.forEach(e => {
 			if (interaction.data.name == e.name)
 			cmd = e;
+			console.info(cmd);
 		});
 		var resp;
 		try {
@@ -92,7 +93,7 @@ app.get('/server_data', async (req, res) => {
 	return await discord_api.get()
 })
 
-
+console.log("Bot Started");
 app.listen(8999, () => {
 
 })
