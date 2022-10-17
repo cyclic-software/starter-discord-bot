@@ -55,7 +55,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		});
 		var resp;
 		try {
-			resp = cmd.execute(interaction);
+			resp = await cmd.execute(interaction);
 			return res.send(resp);
 		} catch (e) {
 			console.error(e);
@@ -63,7 +63,6 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	}
 
 });
-
 
 
 app.get('/register_commands', async (req, res) => {
