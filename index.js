@@ -1,20 +1,15 @@
-
-// const { clientId, guildId, token, publicKey } = require('./config.json');
+// https://discord.com/developers/docs/resources
 require('dotenv').config()
 const APPLICATION_ID = process.env.APPLICATION_ID
 const TOKEN = process.env.TOKEN
 const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
 const GUILD_ID = process.env.GUILD_ID
 
-
 const axios = require('axios')
 const express = require('express');
 const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 
-
 const app = express();
-// app.use(bodyParser.json());
-
 const discord_api = axios.create({
 	baseURL: 'https://discord.com/api/',
 	timeout: 3000,
@@ -45,6 +40,7 @@ for (const file of cmdFile) {
 	});
 }
 
+// Interaction
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	const interaction = req.body;
 
@@ -53,7 +49,6 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		commands.forEach(e => {
 			if (interaction.data.name == e.name) {
 				cmd = e;
-				console.info(cmd);
 				x = true;
 			} else if (!x) {
 				cmd = null;
@@ -70,20 +65,16 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		var resp;
 		try {
 			resp = await cmd.execute(interaction);
-			console.info(resp);
 			return res.send(resp);
 		} catch (e) {
 			console.error(e);
 		}
 	}
-
 });
 
-
+// Register new commands, remove old ones too
 app.get('/register_commands', async (req, res) => {
-	let slash_commands = []
 	try {
-		// api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
 		let discord_response = await discord_api.put(
 			`/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
 			commandsArr
@@ -98,25 +89,25 @@ app.get('/register_commands', async (req, res) => {
 })
 
 
-app.get('/', async (req, res) => {
-	return res.send(
-		'Follow documentation\n' +
-		'https://fine-pear-jaguar-boot.cyclic.app/register_commands\n' +
-		'http://127.0.0.1/register_commands')
-})
+// app.get('/', async (req, res) => {
+// 	return res.send(
+// 		'Follow documentation\n' +
+// 		'https://fine-pear-jaguar-boot.cyclic.app/register_commands\n' +
+// 		'http://127.0.0.1/register_commands')
+// })
 
-app.get('/server_data', async (req, res) => {
-	return (await discord_api.get(
-		`/guilds/${GUILD_ID}`
-	) + await discord_api.get(
-		`/guilds/${GUILD_ID}/channels`
-	) + await discord_api.get(
-		`/guilds/${GUILD_ID}/members`
-	)
-	)
-})
+// app.get('/server_data', async (req, res) => {
+// 	return (await discord_api.get(
+// 		`/guilds/${GUILD_ID}`
+// 	) + await discord_api.get(
+// 		`/guilds/${GUILD_ID}/channels`
+// 	) + await discord_api.get(
+// 		`/guilds/${GUILD_ID}/members`
+// 	)
+// 	)
+// })
 
-console.log("Bot Started");
+// 'Start' the Bot
 app.listen(8999, () => {
-
+	console.log("Bot Started");
 })
