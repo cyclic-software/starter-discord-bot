@@ -1,3 +1,4 @@
+const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 module.exports = {
 	name: "unfun_ping",
 	description: "Just Testing",
