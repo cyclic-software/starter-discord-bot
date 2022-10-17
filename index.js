@@ -49,20 +49,24 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	const interaction = req.body;
 
 	if (interaction.type === InteractionType.APPLICATION_COMMAND) {
+		var x = false;
 		commands.forEach(e => {
 			if (interaction.data.name == e.name) {
 				cmd = e;
 				console.info(cmd);
-			} else {
+				x = true;
+			} else if (!x) {
 				cmd = null;
-				return res.send({
-					type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-					data: {
-						content: `Sorry ${interaction.member.user.username}, I don't knw what '${interaction.data.name}' is.`,
-					},
-				})
 			}
 		});
+		if (!x) {
+			return res.send({
+				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+				data: {
+					content: `Sorry ${interaction.member.user.username}, I don't know what '${interaction.data.name}' is.`,
+				},
+			})
+		}
 		var resp;
 		try {
 			resp = await cmd.execute(interaction);
