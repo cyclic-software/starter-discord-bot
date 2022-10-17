@@ -35,7 +35,7 @@ const cmdPath = path.join(__dirname, "commands");
 const cmdFile = fs.readdirSync(cmdPath)
 	.filter(file => file.endsWith(".js"));
 for (const file of cmdFile) {
-	const filePath = path.join(cmdPath,file);
+	const filePath = path.join(cmdPath, file);
 	const cmd = require(filePath);
 	commands.push(cmd);
 	commandsArr.push({
@@ -50,9 +50,18 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
 	if (interaction.type === InteractionType.APPLICATION_COMMAND) {
 		commands.forEach(e => {
-			if (interaction.data.name == e.name)
-			cmd = e;
-			console.info(cmd);
+			if (interaction.data.name == e.name) {
+				cmd = e;
+				console.info(cmd);
+			} else {
+				cmd = null;
+				return res.send({
+					type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+					data: {
+						content: `Sorry ${interaction.member.usesr.username}, I don't knw what '${interaction.data.name}' is.`,
+					},
+				})
+			}
 		});
 		var resp;
 		try {
