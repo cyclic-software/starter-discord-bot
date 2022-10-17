@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node index.js dotenv_config_debug=true",
     "dev": "nodemon index.js",
-    "start":"node index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "discord-interactions": "^3.2.0",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1"
   },
   "devDependencies": {
