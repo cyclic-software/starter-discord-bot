@@ -60,7 +60,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 			resp = commands.execute(interaction);
 			return res.send(resp);
 		} catch (e) {
-			console.error(error);
+			console.error(e);
 		}
 		// console.log(interaction.data.name)
 		// if (interaction.data.name == 'yo') {
