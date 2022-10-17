@@ -107,10 +107,12 @@ app.get('/', async (req, res) => {
 
 app.get('/server_data', async (req, res) => {
 	return res.send(
+		"<html><body>" +
 		"<iframe" +
 		"src=\"https://discord.com/widget?id=986933952860291122&theme=dark\"" +
 		"width=\"350\" height=\"500\" allowtransparency=\"true\" frameborder=\"0\"" +
-		"sandbox=\"allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts\"></iframe>")
+		"sandbox=\"allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts\"></iframe>" +
+		"</body></html>")
 })
 
 console.log("Bot Started");
