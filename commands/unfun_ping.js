@@ -1,4 +1,4 @@
-const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
+const { InteractionResponseType } = require('discord-interactions');
 module.exports = {
 	name: "unfun_ping",
 	description: "This is not a fun Ping. Lol",
@@ -9,6 +9,6 @@ module.exports = {
 			data: {
 				content: `Yo ${interaction.member.user.username}! You'r MOM.^^`,
 			},
-		})
+		});
 	}
 }
