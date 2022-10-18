@@ -1,7 +1,7 @@
 const { InteractionResponseType } = require('discord-interactions');
 module.exports = {
-	name: "fun_ping",
-	description: "This is a Fun Ping Message.",
+	name: "multi_message",
+	description: "Testing of multiple Messages.",
 	options: [],
 	async execute(interaction, res) {
 		res.send({
