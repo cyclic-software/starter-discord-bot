@@ -103,7 +103,7 @@ app.get('/register_commands', async (req,res) =>{
 
 
 app.get('/', async (req,res) =>{
-  return res.send('Follow documentation ')
+  return res.send('Follow documentation By Mohammed')
 })
 
 
