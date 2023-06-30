@@ -9,11 +9,13 @@ const GUILD_ID = process.env.GUILD_ID
 
 const axios = require('axios')
 const express = require('express');
+const path = require('path');
 const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 
 
 const app = express();
 // app.use(bodyParser.json());
+
 
 const discord_api = axios.create({
   baseURL: 'https://discord.com/api/',
@@ -25,7 +27,6 @@ const discord_api = axios.create({
 	"Authorization": `Bot ${TOKEN}`
   }
 });
-
 
 
 
@@ -71,7 +72,6 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 });
 
 
-
 app.get('/register_commands', async (req,res) =>{
   let slash_commands = [
     {
@@ -101,10 +101,19 @@ app.get('/register_commands', async (req,res) =>{
   }
 })
 
+
 app.get('/test', async (req,res) =>{
   return res.send("test");
 })
 
+
+// New stuff
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', function(req, res, next) {
+	res.render('home.ejs');
+})
+// END New stuff
 
 app.get('/', async (req,res) =>{
   return res.send('Follow documentation ')
