@@ -101,6 +101,10 @@ app.get('/register_commands', async (req,res) =>{
   }
 })
 
+app.get('/test', async (req,res) =>{
+  return res.send("test");
+})
+
 
 app.get('/', async (req,res) =>{
   return res.send('Follow documentation ')
